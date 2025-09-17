@@ -5,6 +5,7 @@
 interface CachePreloader {
   preloadAgileMetrics: () => Promise<any>;
   preloadExecutiveMetrics: () => Promise<any>;
+  preloadProductivityMetrics: () => Promise<any>;
   preloadAll: () => Promise<void>;
 }
 
@@ -13,12 +14,14 @@ const API_BASE = 'http://localhost:8089/api';
 // Persistent cache keys
 const AGILE_CACHE_KEY = 'jira_agile_cache';
 const EXECUTIVE_CACHE_KEY = 'jira_executive_cache';
+const PRODUCTIVITY_CACHE_KEY = 'jira_productivity_cache';
 const CACHE_TIMESTAMP_KEY = 'jira_cache_timestamp';
 const CACHE_DURATION = 30000; // 30 seconds
 
 // Global preload storage for instant access
 let preloadedAgileData: any = null;
 let preloadedExecutiveData: any = null;
+let preloadedProductivityData: any = null;
 
 // Persistent cache utilities
 const persistentCache = {
@@ -118,13 +121,38 @@ export const cachePreloader: CachePreloader = {
     }
   },
 
+  preloadProductivityMetrics: async () => {
+    try {
+      const startTime = Date.now();
+      const response = await fetch(`${API_BASE}/developer-productivity`);
+      const data = await response.json();
+      const loadTime = Date.now() - startTime;
+      
+      // Store in both memory and localStorage
+      preloadedProductivityData = data;
+      persistentCache.save(PRODUCTIVITY_CACHE_KEY, data);
+      
+      if (data._cache_served) {
+        console.log(`⚡ Productivity metrics cached in ${loadTime}ms`);
+      } else {
+        console.log(`📡 Productivity metrics fresh in ${loadTime}ms`);
+      }
+      return data;
+    } catch (error) {
+      console.warn('Failed to preload productivity metrics:', error);
+      // Return cached data if network fails
+      return preloadedProductivityData || persistentCache.load(PRODUCTIVITY_CACHE_KEY);
+    }
+  },
+
   preloadAll: async () => {
     try {
-      // Preload both metrics in parallel
+      // Preload all metrics in parallel
       const startTime = Date.now();
       await Promise.all([
         cachePreloader.preloadAgileMetrics(),
-        cachePreloader.preloadExecutiveMetrics()
+        cachePreloader.preloadExecutiveMetrics(),
+        cachePreloader.preloadProductivityMetrics()
       ]);
       const totalTime = Date.now() - startTime;
       console.log(`⚡ All metrics preloaded for instant access in ${totalTime}ms`);
@@ -141,6 +169,10 @@ export const getPreloadedAgileData = () => {
 
 export const getPreloadedExecutiveData = () => {
   return preloadedExecutiveData || persistentCache.load(EXECUTIVE_CACHE_KEY);
+};
+
+export const getPreloadedProductivityData = () => {
+  return preloadedProductivityData || persistentCache.load(PRODUCTIVITY_CACHE_KEY);
 };
 
 // Export cache status

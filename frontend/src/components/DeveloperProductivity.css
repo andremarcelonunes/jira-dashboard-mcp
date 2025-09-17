@@ -1,0 +1,247 @@
+.developer-productivity {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.productivity-header {
+  text-align: center;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.productivity-header h1 {
+  font-size: 2.5rem;
+  color: #1a202c;
+  margin: 0;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #718096;
+  margin: 10px 0 0 0;
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.hero-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.hero-value {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.hero-label {
+  font-size: 1.1rem;
+  color: #4a5568;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.hero-sublabel {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.performance-section {
+  margin-bottom: 32px;
+}
+
+.performance-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 24px;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.chart-container h3 {
+  font-size: 1.3rem;
+  color: #2d3748;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.evolution-section {
+  margin-bottom: 32px;
+}
+
+.evolution-container {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.evolution-container h2 {
+  font-size: 1.5rem;
+  color: #2d3748;
+  margin-bottom: 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.achievements-section {
+  margin-bottom: 32px;
+}
+
+.achievements-container {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.achievement-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+  border-radius: 12px;
+  padding: 16px;
+  border-left: 4px solid #10b981;
+  font-size: 0.95rem;
+  color: #1a202c;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s ease;
+}
+
+.achievement-card:hover {
+  transform: translateX(4px);
+}
+
+.summary-section {
+  margin-top: 32px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.summary-metric {
+  text-align: center;
+}
+
+.summary-metric-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.summary-metric-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.summary-description {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.summary-description strong {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.last-update {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-top: 10px;
+}
+
+.days-using {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.days-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #8B5CF6;
+  line-height: 1;
+}
+
+.days-label {
+  font-size: 0.9rem;
+  color: #718096;
+  margin-top: 4px;
+}

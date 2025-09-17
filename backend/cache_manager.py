@@ -17,6 +17,7 @@ class UltraFastCache:
         # Cache file paths
         self.agile_cache_file = self.cache_dir / "agile_metrics.json"
         self.executive_cache_file = self.cache_dir / "executive_metrics.json"
+        self.productivity_cache_file = self.cache_dir / "developer_productivity.json"
         
         # Background update control
         self._updating = False
@@ -85,9 +86,36 @@ class UltraFastCache:
             print("💾 Executive metrics cache updated")
         return success
     
+    def get_productivity_metrics_instant(self) -> Optional[Dict[str, Any]]:
+        """Get developer productivity metrics instantly from cache"""
+        cache_data = self._read_cache_file(self.productivity_cache_file)
+        if cache_data:
+            # Add cache metadata
+            print("⚡ Served INSTANT productivity metrics from cache")
+            return cache_data
+        print("🆕 No productivity cache available")
+        return None
+    
+    def update_productivity_cache(self, data: Dict[str, Any]) -> bool:
+        """Update developer productivity metrics cache"""
+        # Add timestamp
+        data['_cached_at'] = datetime.now().isoformat()
+        data['_cache_version'] = 1
+        success = self._write_cache_file(self.productivity_cache_file, data)
+        if success:
+            print("💾 Developer productivity cache updated")
+        return success
+    
     def is_cache_fresh(self, cache_type: str, max_age_minutes: int = 2) -> bool:
         """Check if cache is fresh enough"""
-        file_path = self.agile_cache_file if cache_type == 'agile' else self.executive_cache_file
+        if cache_type == 'agile':
+            file_path = self.agile_cache_file
+        elif cache_type == 'executive':
+            file_path = self.executive_cache_file
+        elif cache_type == 'productivity':
+            file_path = self.productivity_cache_file
+        else:
+            return False
         
         try:
             if not file_path.exists():
@@ -149,18 +177,44 @@ class UltraFastCache:
         finally:
             self._updating = False
     
+    async def background_update_productivity(self, update_func):
+        """Update productivity cache in background"""
+        if self._updating:
+            print("🔄 Background update already in progress")
+            return
+            
+        self._updating = True
+        try:
+            print("🔄 Starting background productivity metrics update...")
+            fresh_data = await update_func()
+            if fresh_data:
+                # Convert Pydantic model to dict if needed
+                if hasattr(fresh_data, 'dict'):
+                    fresh_data = fresh_data.dict()
+                
+                self.update_productivity_cache(fresh_data)
+                print("✅ Background productivity metrics update completed")
+            else:
+                print("❌ Background productivity metrics update failed")
+        except Exception as e:
+            print(f"❌ Background productivity metrics update error: {e}")
+        finally:
+            self._updating = False
+    
     def get_cache_status(self) -> Dict[str, Any]:
         """Get cache status information"""
         status = {
             "agile_cache_exists": self.agile_cache_file.exists(),
             "executive_cache_exists": self.executive_cache_file.exists(),
+            "productivity_cache_exists": self.productivity_cache_file.exists(),
             "agile_cache_fresh": self.is_cache_fresh('agile'),
             "executive_cache_fresh": self.is_cache_fresh('executive'),
+            "productivity_cache_fresh": self.is_cache_fresh('productivity'),
             "updating": self._updating
         }
         
         # Add file timestamps
-        for cache_type, file_path in [('agile', self.agile_cache_file), ('executive', self.executive_cache_file)]:
+        for cache_type, file_path in [('agile', self.agile_cache_file), ('executive', self.executive_cache_file), ('productivity', self.productivity_cache_file)]:
             if file_path.exists():
                 try:
                     mtime = datetime.fromtimestamp(file_path.stat().st_mtime)

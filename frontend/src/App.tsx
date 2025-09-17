@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import AgileDashboard from './components/AgileDashboard'
-import EvolutionDashboard from './components/EvolutionDashboard'
+import ExecutiveDashboard from './components/ExecutiveDashboard'
 import './App.css'
 
 function App() {
-  const [currentView, setCurrentView] = useState<'agile' | 'evolution'>('agile')
+  const [currentView, setCurrentView] = useState<'agile' | 'executive'>('agile')
 
   return (
     <div className="app">
@@ -17,16 +17,16 @@ function App() {
             Painel Ágil
           </button>
           <button 
-            className={`nav-tab ${currentView === 'evolution' ? 'active' : ''}`}
-            onClick={() => setCurrentView('evolution')}
+            className={`nav-tab ${currentView === 'executive' ? 'active' : ''}`}
+            onClick={() => setCurrentView('executive')}
           >
-            Evolução Matcon 2025
+            Painel Executivo
           </button>
         </div>
       </nav>
       
       <main className="app-main">
-        {currentView === 'agile' ? <AgileDashboard /> : <EvolutionDashboard />}
+        {currentView === 'agile' ? <AgileDashboard /> : <ExecutiveDashboard />}
       </main>
     </div>
   )

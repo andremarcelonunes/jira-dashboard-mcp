@@ -1,0 +1,79 @@
+{
+  "velocity": 51,
+  "bugs_prod": 1,
+  "bugs_qa": 0,
+  "unplanned": 78,
+  "committed_vs_delivered": {
+    "committed": 161,
+    "delivered": 51
+  },
+  "quality_percentage": 4.3,
+  "team_health": 44,
+  "lead_time": 37.0,
+  "cycle_time_evolution": [
+    {
+      "month": "Jul",
+      "cycle_time": 32.4,
+      "issue_count": 21
+    },
+    {
+      "month": "Ago",
+      "cycle_time": 67.4,
+      "issue_count": 16
+    },
+    {
+      "month": "Set",
+      "cycle_time": 6.4,
+      "issue_count": 3
+    }
+  ],
+  "cycle_time_stats": {
+    "average": 37.0,
+    "median": 20.0,
+    "p90": 121.3,
+    "min": 0.0,
+    "max": 126.4,
+    "count": 51
+  },
+  "data_source": "live_mcp_api",
+  "total_issues": 161,
+  "fetched_at": "2025-09-17T16:55:12.157295-03:00",
+  "breakdown": {
+    "done": 51,
+    "testing": 18,
+    "backlog": 82,
+    "in_progress": 10,
+    "bugs": 7,
+    "subtasks": 78,
+    "stories": 83,
+    "high_priority": 0
+  },
+  "effort_metrics": {
+    "total_estimated_hours": 2042,
+    "completed_hours": 647,
+    "remaining_hours": 1395,
+    "current_avg_hours_per_issue": 9.0,
+    "effort_evolution": [
+      {
+        "month": "junho",
+        "avg_hours_per_issue": 6.0,
+        "completed_hours": 6
+      },
+      {
+        "month": "agosto",
+        "avg_hours_per_issue": 85.0,
+        "completed_hours": 170
+      },
+      {
+        "month": "setembro",
+        "avg_hours_per_issue": 9.0,
+        "completed_hours": 36
+      }
+    ],
+    "productivity_trend": "improving",
+    "estimated_completion_date": "2026-03-20",
+    "burn_rate_hours_per_week": 53
+  },
+  "_cached_at": "2025-09-17T16:55:12.160492",
+  "_cache_version": 1
+}

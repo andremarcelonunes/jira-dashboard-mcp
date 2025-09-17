@@ -13,16 +13,23 @@ class MCPAtlassianClient:
     """Client to connect to MCP Atlassian server"""
     
     def __init__(self):
+        # Load MCP configuration
+        config_path = "/Users/andrenunes/PycharmProjects/ProjetoJira/mcp-config.json"
+        
+        with open(config_path, 'r') as f:
+            config = json.load(f)
+        
+        # Get Atlassian server configuration
+        atlassian_config = config['mcpServers']['atlassian']
+        
         # Your MCP server configuration
-        self.mcp_server_path = "/Users/andrenunes/go-realtime-event-system/mcp-atlassian-server/server.js"
-        self.node_path = "/Users/andrenunes/.nvm/versions/node/v20.17.0/bin/node"
+        self.mcp_server_path = atlassian_config['args'][0]
+        self.node_path = atlassian_config['command']
         
         # Environment variables for the MCP server
         self.env = {
             **os.environ.copy(),
-            "ATLASSIAN_URL": "https://your-domain.atlassian.net",
-            "ATLASSIAN_EMAIL": "your-email@example.com",
-            "ATLASSIAN_API_TOKEN": "your-api-token"
+            **atlassian_config['env']
         }
         
     def call_mcp_function(self, function_name: str, params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -82,11 +89,11 @@ class MCPAtlassianClient:
             import requests
             from requests.auth import HTTPBasicAuth
             
-            url = f"https://your-domain.atlassian.net/rest/api/3/issue/{issue_key}/worklog"
+            url = f"{self.env['ATLASSIAN_URL']}/rest/api/3/issue/{issue_key}/worklog"
             
             auth = HTTPBasicAuth(
-                "your-email@example.com",
-                "your-api-token"
+                self.env['ATLASSIAN_EMAIL'],
+                self.env['ATLASSIAN_API_TOKEN']
             )
             
             headers = {
@@ -116,11 +123,11 @@ class MCPAtlassianClient:
         from requests.auth import HTTPBasicAuth
         
         try:
-            url = "https://your-domain.atlassian.net/rest/api/3/search"
+            url = f"{self.env['ATLASSIAN_URL']}/rest/api/3/search"
             
             auth = HTTPBasicAuth(
-                "your-email@example.com",
-                "your-api-token"
+                self.env['ATLASSIAN_EMAIL'],
+                self.env['ATLASSIAN_API_TOKEN']
             )
             
             headers = {

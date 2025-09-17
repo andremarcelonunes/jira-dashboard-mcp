@@ -2,11 +2,11 @@
   "mcpServers": {
     "atlassian": {
       "command": "node",
-      "args": ["/path/to/mcp-server-atlassian/dist/index.js"],
+      "args": ["./mcp-server/server.js"],
       "env": {
-        "ATLASSIAN_DOMAIN": "your-domain.atlassian.net",
-        "ATLASSIAN_EMAIL": "your-email@example.com",
-        "ATLASSIAN_API_TOKEN": "your-api-token-here"
+        "ATLASSIAN_URL": "https://your-domain.atlassian.net",
+        "ATLASSIAN_EMAIL": "your-email@domain.com",
+        "ATLASSIAN_API_TOKEN": "your-jira-api-token"
       }
     }
   }

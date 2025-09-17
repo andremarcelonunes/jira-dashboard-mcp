@@ -17,11 +17,18 @@ def get_real_logged_hours():
     import requests
     from requests.auth import HTTPBasicAuth
     
-    url = "https://your-domain.atlassian.net/rest/api/3/search"
+    # Load MCP configuration to get credentials
+    config_path = "/Users/andrenunes/PycharmProjects/ProjetoJira/mcp-config.json"
+    with open(config_path, 'r') as f:
+        config = json.load(f)
+    
+    atlassian_env = config['mcpServers']['atlassian']['env']
+    
+    url = f"{atlassian_env['ATLASSIAN_URL']}/rest/api/3/search"
     
     auth = HTTPBasicAuth(
-        "your-email@example.com",
-        "your-api-token"
+        atlassian_env['ATLASSIAN_EMAIL'],
+        atlassian_env['ATLASSIAN_API_TOKEN']
     )
     
     params = {

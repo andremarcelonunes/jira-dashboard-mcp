@@ -1,0 +1,64 @@
+{
+  "business_value_score": 61.08745341614907,
+  "customer_satisfaction_indicator": "4.3/5 ⭐",
+  "delivery_performance": 38.01242236024844,
+  "quality_excellence": 95.7,
+  "velocity_trend": "Improving",
+  "predictability_score": 52.8,
+  "efficiency_rating": 68.91891891891892,
+  "innovation_index": 99.37888198757764,
+  "achievements": [
+    "✅ 51 issues delivered successfully",
+    "🏆 Excellent quality standards maintained",
+    "🎯 High quality delivery",
+    "📋 Reliable completion rate"
+  ],
+  "success_metrics": {
+    "issues_delivered": 51,
+    "completion_rate": "31.7%",
+    "quality_score": "95.7%",
+    "team_health": "44%",
+    "velocity": 51,
+    "cycle_time": "37.0 days"
+  },
+  "performance_trends": {
+    "delivery": "On Track",
+    "quality": "Excellent",
+    "velocity": "Improving",
+    "team_health": "Stable"
+  },
+  "competitive_advantages": [
+    "Superior quality delivery vs industry average",
+    "Faster delivery cycle than typical projects"
+  ],
+  "monthly_performance": [
+    {
+      "month": "Jul",
+      "delivery_score": 35.2,
+      "quality_score": 95.7,
+      "issues_completed": 21
+    },
+    {
+      "month": "Ago",
+      "delivery_score": 20,
+      "quality_score": 95.7,
+      "issues_completed": 16
+    },
+    {
+      "month": "Set",
+      "delivery_score": 87.2,
+      "quality_score": 95.7,
+      "issues_completed": 3
+    }
+  ],
+  "success_indicators": {
+    "delivery_performance": 38.01242236024844,
+    "quality_excellence": 95.7,
+    "team_performance": 44,
+    "business_value": 61.08745341614907
+  },
+  "fetched_at": "2025-09-17T16:54:49.629698-03:00",
+  "period": "Project CB - September 2025",
+  "_cached_at": "2025-09-17T16:54:49.635302",
+  "_cache_version": 1
+}

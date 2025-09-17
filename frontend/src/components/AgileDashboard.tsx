@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { getPreloadedAgileData } from '../utils/preloadCache';
 import './AgileDashboard.css';
 
 interface EffortMetrics {
@@ -57,33 +58,136 @@ interface AgileMetrics {
 }
 
 const AgileDashboard: React.FC = () => {
-  const [metrics, setMetrics] = useState<AgileMetrics | null>(null);
-  const [loading, setLoading] = useState(true);
+  // ULTRA-AGGRESSIVE: Try to get data IMMEDIATELY during component initialization
+  const initialData = getPreloadedAgileData();
+  const [metrics, setMetrics] = useState<AgileMetrics | null>(initialData);
+  const [loading, setLoading] = useState(!initialData);
+  const [refreshing, setRefreshing] = useState(false);
+  
+  // Log instant availability
+  if (initialData) {
+    console.log('⚡ ZERO-DELAY: Agile data available at component mount');
+  }
 
   useEffect(() => {
-    fetchAgileMetrics();
+    let mounted = true;
     
-    const interval = setInterval(() => {
-      fetchAgileMetrics();
-    }, 30000); // Update every 30 seconds
-
-    return () => clearInterval(interval);
+    const loadData = async () => {
+      // First, try to get any immediately available data
+      let preloadedData = getPreloadedAgileData();
+      
+      if (preloadedData && mounted) {
+        setMetrics(preloadedData);
+        setLoading(false);
+        console.log('⚡ INSTANT display from preloaded cache');
+      } else {
+        // If no immediate data, wait a moment for preload to complete
+        setTimeout(() => {
+          if (mounted) {
+            preloadedData = getPreloadedAgileData();
+            if (preloadedData) {
+              setMetrics(preloadedData);
+              setLoading(false);
+              console.log('⚡ DELAYED display from preloaded cache');
+            } else {
+              // Last resort: fetch directly
+              fetchAgileMetrics(false, true);
+            }
+          }
+        }, 100);
+      }
+      
+      // Start background refresh cycle
+      const interval = setInterval(() => {
+        if (mounted) {
+          fetchAgileMetrics(false, false);
+        }
+      }, 30000);
+      
+      return () => {
+        mounted = false;
+        clearInterval(interval);
+      };
+    };
+    
+    const cleanup = loadData();
+    
+    return () => {
+      mounted = false;
+      cleanup.then(cleanupFn => cleanupFn && cleanupFn());
+    };
   }, []);
 
-  const fetchAgileMetrics = async () => {
+  const fetchAgileMetrics = async (forceRefresh = false, isInitialLoad = false) => {
     try {
-      const response = await fetch('http://localhost:8089/api/agile-metrics');
+      // Set loading states
+      if (isInitialLoad && !metrics) {
+        setLoading(true);
+      } else if (forceRefresh) {
+        setRefreshing(true);
+      }
+      
+      const url = forceRefresh 
+        ? `http://localhost:8089/api/agile-metrics?_t=${Date.now()}`
+        : 'http://localhost:8089/api/agile-metrics';
+      
+      const startTime = Date.now();
+      const response = await fetch(url);
       const data = await response.json();
+      const loadTime = Date.now() - startTime;
+      
+      // Update metrics immediately
       setMetrics(data);
+      
+      // Log performance
+      if (data._cache_served) {
+        console.log(`⚡ Cache served in ${loadTime}ms`);
+      } else {
+        console.log(`📡 Fresh data in ${loadTime}ms`);
+      }
+      
     } catch (error) {
       console.error('Error fetching agile metrics:', error);
     } finally {
+      // ALWAYS stop loading states after request completes
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
+  const handleManualRefresh = () => {
+    fetchAgileMetrics(true); // Force refresh
+  };
+
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="loading-container" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        flexDirection: 'column'
+      }}>
+        <div className="spinner" style={{
+          border: '4px solid #f3f3f3',
+          borderTop: '4px solid #3498db',
+          borderRadius: '50%',
+          width: '50px',
+          height: '50px',
+          animation: 'spin 2s linear infinite',
+          marginBottom: '20px'
+        }}></div>
+        <div style={{ color: '#666', fontSize: '18px' }}>
+          Carregando dados do Jira...
+        </div>
+        <style>{`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
   }
 
   if (!metrics) {
@@ -120,10 +224,35 @@ const AgileDashboard: React.FC = () => {
   return (
     <div className="agile-dashboard">
       <header className="dashboard-header">
-        <h1>Painel Ágil - Projeto CB</h1>
-        <p className="data-source-indicator">
-          {metrics.data_source === 'live_jira' || metrics.data_source === 'comprehensive_analysis' || metrics.data_source === 'live_mcp_api' ? '📊 Dados em Tempo Real do Jira' : '⚠️ Dados de Fallback'}
-        </p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+          <div>
+            <h1>Painel Ágil - Projeto CB {refreshing && <span style={{fontSize: '16px', marginLeft: '10px'}}>🔄 Atualizando...</span>}</h1>
+            <p className="data-source-indicator">
+              {metrics.data_source === 'live_jira' || metrics.data_source === 'comprehensive_analysis' || metrics.data_source === 'live_mcp_api' ? '📊 Dados em Tempo Real do Jira' : '⚠️ Dados de Fallback'}
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <button 
+              onClick={handleManualRefresh}
+              disabled={refreshing}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: refreshing ? '#ccc' : '#007bff',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: refreshing ? 'not-allowed' : 'pointer',
+                fontSize: '14px',
+                marginBottom: '4px'
+              }}
+            >
+              {refreshing ? '🔄 Atualizando...' : '🔄 Atualizar Agora'}
+            </button>
+            <small style={{ color: '#666', fontSize: '12px' }}>
+              Última atualização: {metrics.fetched_at ? new Date(metrics.fetched_at).toLocaleTimeString('pt-BR') : 'N/A'}
+            </small>
+          </div>
+        </div>
       </header>
 
       <div className="dashboard-grid">

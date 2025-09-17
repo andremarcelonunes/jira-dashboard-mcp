@@ -98,6 +98,40 @@ cd ../frontend
 npm install
 ```
 
+## 📸 Dashboard Screenshots
+
+### 🎯 Agile Dashboard - Team Performance Insights
+![Agile Dashboard](images/agile-dashboard.png)
+
+**Key Features Displayed:**
+- **⚡ Ultra-Fast Loading**: Instant display with 0ms cache serving
+- **📊 Real-Time Metrics**: 161 issues analyzed, 51 velocity, 647h completed  
+- **🔍 Quality Indicators**: 4.3% bug rate, 95.7% quality excellence
+- **⏱️ Cycle Time Analysis**: 37d average, 20d median, statistical breakdown
+- **📈 Effort Tracking**: 32% project completion with burn rate projections
+- **🏥 Team Health**: 44% composite score with improvement trends
+- **📊 Interactive Charts**: Velocity trends, effort evolution, progress tracking
+- **🔄 Real-Time Updates**: Live data from Jira with background synchronization
+
+### 💼 Executive Dashboard - Business Intelligence  
+![Executive Dashboard](images/executive-dashboard.png)
+
+**Key Features Displayed:**
+- **💰 Business Value Score**: 61.1/100 with weighted performance indicators
+- **⭐ Customer Satisfaction**: 4.3/5 stars calculated from real metrics
+- **📊 Performance Metrics**: 38% delivery rate, 95.7% quality excellence  
+- **🏆 Success Achievements**: 51 issues delivered, quality standards maintained
+- **🎯 Radar Charts**: Team performance across multiple dimensions
+- **📈 Trend Analysis**: Monthly evolution and competitive advantages
+- **📋 Executive KPIs**: Issues delivered, completion rates, cycle times
+- **🚀 Competitive Edge**: Superior quality vs industry averages
+
+**Both dashboards feature:**
+- ⚡ **Instant Loading**: Zero-delay display from persistent cache
+- 🔄 **Auto-Refresh**: Background updates every 30 seconds
+- 📱 **Responsive Design**: Professional presentation quality
+- 🎨 **Executive Ready**: Perfect for management and customer demos
+
 ## ⚙️ Configuration
 
 ### 1. Jira API Credentials Setup

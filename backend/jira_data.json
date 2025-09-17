@@ -1,0 +1,209 @@
+{
+  "expand": "schema,names",
+  "startAt": 0,
+  "maxResults": 20,
+  "total": 161,
+  "fetched_at": "2025-09-15T22:48:00Z",
+  "issues": [
+    {
+      "key": "CB-188",
+      "fields": {
+        "summary": "CB-76.14: Performance Optimization",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:11:34.207-0300"
+      }
+    },
+    {
+      "key": "CB-187",
+      "fields": {
+        "summary": "CB-76.13: Add Comprehensive Tests",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Highest"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:11:10.606-0300"
+      }
+    },
+    {
+      "key": "CB-186",
+      "fields": {
+        "summary": "CB-76.12: Implement Monitoring",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "High"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:10:37.775-0300"
+      }
+    },
+    {
+      "key": "CB-185",
+      "fields": {
+        "summary": "CB-76.11: Add Rate Limiting",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "High"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:10:17.346-0300"
+      }
+    },
+    {
+      "key": "CB-184",
+      "fields": {
+        "summary": "CB-76.10: Handle Edge Cases",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:10:00.418-0300"
+      }
+    },
+    {
+      "key": "CB-183",
+      "fields": {
+        "summary": "CB-76.9: Add Proper Logging",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:09:42.215-0300"
+      }
+    },
+    {
+      "key": "CB-182",
+      "fields": {
+        "summary": "CB-76.8: Implement Input Validation",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:09:22.454-0300"
+      }
+    },
+    {
+      "key": "CB-181",
+      "fields": {
+        "summary": "CB-76.7: Add Comprehensive Error Handling",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:08:58.155-0300"
+      }
+    },
+    {
+      "key": "CB-180",
+      "fields": {
+        "summary": "CB-76.6: Link OTP Verification to User Activation",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:08:39.595-0300"
+      }
+    },
+    {
+      "key": "CB-179",
+      "fields": {
+        "summary": "CB-76.5: Fix Token Refresh Session Validation",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "High"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:08:22.173-0300"
+      }
+    },
+    {
+      "key": "CB-178",
+      "fields": {
+        "summary": "CB-76.4: Fix Phone Verification to Activate Users",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "High"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:08:01.871-0300"
+      }
+    },
+    {
+      "key": "CB-177",
+      "fields": {
+        "summary": "CB-76.3: Restore Missing Business Logic Components",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "High"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:07:39.686-0300"
+      }
+    },
+    {
+      "key": "CB-176",
+      "fields": {
+        "summary": "CB-76.2: Validate Complete Authentication Flow End-to-End",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Highest"},
+        "status": {"name": "Backlog"},
+        "created": "2025-09-10T00:07:17.177-0300"
+      }
+    },
+    {
+      "key": "CB-175",
+      "fields": {
+        "summary": "CB-76.1: Verify Redis Client Integration with Session Management",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Highest"},
+        "status": {"name": "Concluído"},
+        "created": "2025-09-10T00:06:49.271-0300"
+      }
+    },
+    {
+      "key": "CB-174",
+      "fields": {
+        "summary": "Validation & Compliance",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Teste"},
+        "created": "2025-08-25T15:14:56.618-0300"
+      }
+    },
+    {
+      "key": "CB-173",
+      "fields": {
+        "summary": "Integration & Security",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Backlog"},
+        "created": "2025-08-25T15:14:37.414-0300"
+      }
+    },
+    {
+      "key": "CB-172",
+      "fields": {
+        "summary": "History & Audit System",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Teste"},
+        "created": "2025-08-25T15:14:18.637-0300"
+      }
+    },
+    {
+      "key": "CB-171",
+      "fields": {
+        "summary": "Core Medical Records CRUD",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Teste"},
+        "created": "2025-08-25T15:13:58.644-0300"
+      }
+    },
+    {
+      "key": "CB-170",
+      "fields": {
+        "summary": "Medical Service Infrastructure",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Teste"},
+        "created": "2025-08-25T15:13:40.115-0300"
+      }
+    },
+    {
+      "key": "CB-168",
+      "fields": {
+        "summary": "Update OpenAPI documentation for notification window fields",
+        "issuetype": {"name": "Subtarefa", "subtask": true},
+        "priority": {"name": "Medium"},
+        "status": {"name": "Concluído"},
+        "created": "2025-08-24T16:20:00.828-0300"
+      }
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+.agile-dashboard {
+  background-color: #f5f4f0;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header {
+  background: linear-gradient(90deg, #dc3545 0%, #4285f4 50%, #dc3545 100%);
+  color: white;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1400px;
+}
+
+.metric-card, .chart-card, .observations-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.metric-card h3, .chart-card h3, .observations-card h3 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.squad-selector, .sprint-selector {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+}
+
+.velocity-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.bugs-value, .unplanned-value {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.quality-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.chart-card {
+  position: relative;
+}
+
+.lead-time-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  gap: 20px;
+}
+
+.lead-time-chart {
+  width: 60px;
+  height: 150px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.lead-time-bar {
+  width: 100%;
+  background: #34a853;
+  border-radius: 4px 4px 0 0;
+  min-height: 20px;
+}
+
+.lead-time-value {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+}
+
+.team-health-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #4285f4;
+}
+
+.observations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.observation-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.observation-label {
+  font-weight: 500;
+  color: #666;
+}
+
+.observation-value {
+  font-weight: 600;
+  color: #333;
+}
+
+.loading, .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Effort Progress Styles */
+.effort-progress-container {
+  padding: 20px;
+}
+
+.progress-summary {
+  margin-bottom: 20px;
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.stat-value.completed {
+  color: #34a853;
+}
+
+.stat-value.total {
+  color: #1976d2;
+}
+
+.stat-value.progress {
+  color: #ff6b35;
+}
+
+.progress-bar-container {
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #34a853, #4caf50);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.no-data {
+  padding: 40px;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+/* Cycle Time Styles */
+.cycle-time-summary {
+  padding: 15px 0;
+  margin-bottom: 10px;
+}
+
+.current-cycle-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.cycle-time-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.cycle-time-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff6b35;
+}
+
+/* Detailed Cycle Time Styles */
+.cycle-time-detailed {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cycle-time-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.cycle-time-count {
+  font-size: 12px;
+  color: #666;
+  font-weight: normal;
+}
+
+.cycle-time-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0 5px;
+}
+
+.cycle-time-stats .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.cycle-time-stats .stat-label {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.cycle-time-stats .stat-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #495057;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .agile-dashboard {
+    padding: 10px;
+  }
+}
